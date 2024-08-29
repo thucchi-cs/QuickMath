@@ -18,6 +18,7 @@ const equationDisplay = document.querySelector('#equation');
 const input = document.querySelector('#answer');
 const msg = document.querySelector('#result');
 const btn = document.querySelector('Button');
+// input.step = '0.01';
 
 // equation initializers
 let x = 0;
@@ -54,6 +55,11 @@ function getAnswer() {
 
 getEquation();
 
+function changeColor(color) {
+    document.querySelector('body').style.backgroundColor = color;
+    console.log(color);
+}
+
 // handle input when submitted
 btn.addEventListener('click', () => {
     // get right answer
@@ -64,6 +70,13 @@ btn.addEventListener('click', () => {
         msg.innerHTML = 'numbers only';
     } else {
         // reset if all good
+        if (Number(input.value) == answer) {
+            changeColor('#00cc00');
+            setTimeout(() => {changeColor('white')}, 400);
+        } else {
+            changeColor('red');
+            setTimeout(() => {changeColor('white')}, 400); 
+        }
         msg.innerHTML = '';
         getEquation();
     }
