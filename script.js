@@ -19,32 +19,60 @@ const input = document.querySelector('#answer');
 const msg = document.querySelector('#result');
 const btn = document.querySelector('Button');
 
+// equation initializers
+let x = 0;
+let y = 0;
+let opSymbol = operators[0];
+let equation = x + ' ' + opSymbol + ' ' + y;
+
 // create random equation
 function getEquation() {
     // pick random numbers and operators
-    let x = random(maxX);
-    let y = random(maxY);
-    let op = operators[random(3)];
+    x = random(maxX);
+    y = random(maxY);
+    opSymbol = operators[random(3)];
 
     // display equation
-    let equation = x + ' ' + op + ' ' + y;
+    equation = x + ' ' + opSymbol + ' ' + y;
     console.log(equation);
     equationDisplay.innerHTML = equation;
 }
 
+// get correct answers of equation
+function getAnswer() {
+    switch (operators.indexOf(opSymbol)) {
+        case 0:
+            return x + y;
+        case 1:
+            return x - y;
+        case 2:
+            return x * y;
+        case 3:
+            return x/y;
+    }
+}
+
 getEquation();
 
-// clear input when sumbitted
+// handle input when submitted
 btn.addEventListener('click', () => {
-    let inpt = document.querySelector('input');
-    inpt.value = '';
-    console.log('clear');
+    // get right answer
+    let answer = getAnswer();
+
+    // check if input is numeric
+    if (isNaN(Number(input.value))) {
+        msg.innerHTML = 'numbers only';
+    } else {
+        // reset if all good
+        msg.innerHTML = '';
+        getEquation();
+    }
+    input.value = '';
 })
 
 // submit when enter is pressedd
 input.addEventListener('keydown', (key) => {
     if (key.code == "Enter") {
         document.querySelector('Button').click();
-        console.log('enter');
     }
 })
