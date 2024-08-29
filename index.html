@@ -3,13 +3,22 @@
     <head>
         <meta charset="uft-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
         <link href="./style.css" rel="stylesheet">
         <title>Quick Math</title>
+        
     </head>
     <body>
+        <div id="head">
+            <h1 id="title">Quick Math Prac</h1>
+            <h3 id="direction"></h3>
+        </div>
         <h1 id="equation"></h1>
         <input autofocus autocomplete="off" placeholer="Answer" id="answer">
-        <Button>check</Button>
+        <Button id="submit">check</Button>
+        <Button id="skip">skip</Button>
         <p id="result"></p>
 
         <script src="./script.js"></script>
