@@ -61,7 +61,7 @@ function checkTries() {
     } else {
         // skip question if go over # of tries
         if (tries < triesAllowed) {
-            msg.innerHTML = (triesAllowed - tries) + ' tries left';
+            msg.innerHTML = (triesAllowed - tries) + ' tries left...';
             msg.style.color = 'red';
         } else {
             resetEquation();
@@ -106,6 +106,7 @@ btnSubmit.addEventListener('click', () => {
         }
     }
     input.value = '';
+    input.focus();
 })
 
 // skip question
@@ -113,6 +114,7 @@ btnSkip.addEventListener('click', () => {
     changeColor('yellow');
     setTimeout(() => {changeColor(bgColor)}, 400); 
     resetEquation();
+    input.focus();
 })
 
 // submit when enter is pressedd
@@ -127,5 +129,6 @@ input.addEventListener('keydown', (key) => {
 
 // set direction
 document.querySelector('#direction').innerHTML = "Solve the following equation. If the answer is not an integer, round to the nearest " + round + 'th.';
+document.querySelector('body').style.backgroundColor = '#000042';
 // get first equation
 getEquation();

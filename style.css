@@ -1,7 +1,59 @@
-h1 {
-    color: red;
+* {
+    font-family: "SUSE", sans-serif;
 }
 
 body {
     transition: 300ms;
+    background-color: '#000042';
+    text-align: center;
+    height:100%;
+}
+
+h1, h3 {
+    color: white;
+}
+
+#head {
+    width: 50%;
+    margin: auto;
+}
+
+#title {
+    font-size: 10vh;
+}
+
+#direction {
+    font-size: 5vh;
+}
+
+#equation {
+    font-size: 9vh;
+}
+
+#answer {
+    width: 25vw;
+    height: 10vh;
+    border-radius: 50px;
+    margin-bottom: 4vh;
+    font-size: 8vh;
+    text-align: center;
+}
+
+#buttons {
+    display:block;
+    margin: auto;
+}
+
+#submit, #skip {
+    font-size: 5vh;
+    border-radius: 50px;
+    width: 10vw
+}
+
+#submit {
+    margin-right: 15px;
+}
+
+#result {
+    font-size: 6vh;
 }
