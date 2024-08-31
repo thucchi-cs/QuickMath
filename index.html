@@ -11,17 +11,60 @@
         
     </head>
     <body>
+        <span id="options">
+            <span>
+                <img src="./imgs/settings-icon.png" alt="settings-icon" id="settings">
+                <h1 id="timer">00:30</h1>
+            </span>
+            <span>
+                <img src="./imgs/restart2.png" alt="restart" class="start" id="restart">        
+                <h1 id="score">56/62</h1>
+            </span>
+        </span>
         <div id="head">
-            <h1 id="title">Quick Math Prac</h1>
+            <h1 class="title">Quick Math Prac</h1>
             <h3 id="direction"></h3>
         </div>
         <h1 id="equation"></h1>
-        <input autofocus autocomplete="off" placeholer="Answer" id="answer">
+        <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01">
         <div id="buttons">
-            <Button id="submit">check</Button>
-            <Button id="skip">skip</Button>
+            <button id="submit">check</button>
+            <button id="skip">skip</button>
         </div>
         <h1 id="result"></h1>
+
+
+        <div id="settings-window">  
+            <img src="./imgs/close-icon.png" alt="settings-window" class="close">
+            <h1 class="title">OPTIONS</h1>
+            <span id="settings-body">
+                <span id="settings-left">
+                    <li>X</li>
+                        <input type="number" value="10" class="x-range">
+                        <input type="number" value="20" class="x-range">
+                    <li>Y</li>
+                        <input type="number" value="21" class="y-range">
+                        <input type="number" value="30" class="y-range">
+                    <li>Z</li>
+                    <input type="checkbox">
+                </span>
+                <span id="settings-right">
+                    <li>Skip</li>
+                        <input type="checkbox" id="skip-toggle" checked="true">
+                    <li>Tries</li>
+                        <select name="tries" id="tries-select">
+                            <option value="0">unlimited</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    <h1>heyy</h1>
+                </span>
+            </span>
+            <button class="start">Go</button>
+        </div>
 
         <script src="./script.js"></script>
     </body>

@@ -16,9 +16,10 @@ h1, h3 {
 #head {
     width: 50%;
     margin: auto;
+    margin-top: -10vh;
 }
 
-#title {
+.title {
     font-size: 10vh;
 }
 
@@ -28,6 +29,7 @@ h1, h3 {
 
 #equation {
     font-size: 9vh;
+    margin: 10px;
 }
 
 #answer {
@@ -39,9 +41,29 @@ h1, h3 {
     text-align: center;
 }
 
+/* Chrome, Safari, Edge, Opera */
+#answer::-webkit-outer-spin-button,
+#answer::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#answer[type=number] {
+  -moz-appearance: textfield;
+}
+
 #buttons {
     display:block;
     margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+#skip #submit {
+    display: inline-flex;
 }
 
 #submit, #skip {
@@ -50,12 +72,68 @@ h1, h3 {
     width: 10vw
 }
 
-#submit {
-    margin-right: 15px;
+#skip {
+    margin-left: 15px;
 }
 
 #result {
     font-size: 6vh;
+}
+
+#options {
+    display: inline-flex;
+    height: 7vh;
+    width: 80%;
+    margin-top: 3vh;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#settings, #restart {
+    height: 8vh;
+    transition: 300ms;
+    /* margin-left: 5%; */
+}
+
+#settings:hover, #restart:hover {
+    height:10vh;
+}
+
+#timer, #score {
+    font-size: 5vh;
+}
+
+#settings-window {
+    background-color: #cccccc;
+    width:80%;
+    height:80%;
+    position:absolute;
+    display:block;
+    margin: auto;
+    left:10%;
+    top: 10%;
+    transition: 500ms;
+}
+
+.close {
+    width: 4%;
+    margin-left: 45%;
+    margin-top: 1%;
+    position: absolute;
+}
+
+#settings-body {
+    justify-content: space-between;
+    width: 90%;
+    background-color: red;
+    color:green;
+    display: inline-block;
+}
+
+#settings-left {
+    display: inline;
+    list-style: none;
+    float: left;
 }
 
 @media (max-width: 1000px) {
