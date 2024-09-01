@@ -5,11 +5,18 @@ let maxX = 10;
 let maxY = 10;
 let skip = true;
 let triesAllowed = 5;
+let allowedOperators = [];
+let time = 10;
+let timerOn = false;
+let setMinute = 0;
+let setSecond = 30;
 
 // elements
 const equationDisplay = document.querySelector('#equation');
 const input = document.querySelector('#answer');
 const msg = document.querySelector('#result');
+const timerDisplay = document.querySelector('#timer');
+const scoreDisplay = document.querySelector('#score');
 const btnSubmit = document.querySelector('#submit');
 const btnSkip = document.querySelector('#skip');
 const btnSettings = document.querySelector('#settings');
@@ -29,6 +36,8 @@ let x = 0;
 let y = 0;
 let opSymbol = operators[0];
 let equation = x + ' ' + opSymbol + ' ' + y;
+let score = 0;
+let count = 0;
 
 // get values from settings
 function getConfigurations() {
@@ -48,6 +57,26 @@ function getConfigurations() {
 
     // number of tries
     triesAllowed = Number(document.querySelector('#tries-select').value);
+
+    // allowed operations
+    allowedOperators = [];
+    for (let i = 0; i < operators.length; i++) {
+        if (document.querySelectorAll('#operations')[i].checked) {
+            allowedOperators.push(operators[i]);
+        }
+    }
+    console.log(allowedOperators);
+    
+    // timer
+    timerOn = document.querySelector('#timer-on').checked
+    if (timerOn) {
+        setMinute = document.querySelector('#minute').value
+        setSecond = document.querySelector('#second').value;
+        time = (Number(setMinute) * 60) + Number(setSecond) + 1;
+    } else {
+        time = 0;
+        timerDisplay.innerHTML = '';
+    }
 }
 
 // reset settings to unchanged values
@@ -62,7 +91,17 @@ function resetConfigurations() {
     document.querySelector('#skip-toggle').checked = skip;
 
     // number of tries
-    Number(document.querySelector('#tries-select').value) = triesAllowed;
+    document.querySelector('#tries-select').value = triesAllowed;
+
+    // allowed operations
+    for (let i = 0; i < operators.length; i++) {
+        document.querySelectorAll('#operations')[i].checked = allowedOperators.includes(operators[i]);
+    }
+
+    // timer
+    document.querySelector('#timer-on').checked = timerOn;
+    document.querySelector('#minute').value = setMinute;
+    document.querySelector('#second').value = setSecond;
 }
 
 // random numbers function
@@ -74,9 +113,11 @@ function random(min, max) {
 // create random equation
 function getEquation() {
     // pick random numbers and operators
-    x = random(minX, maxX);
-    y = random(minY, maxY);
-    opSymbol = operators[random(0,3)];
+    opSymbol = allowedOperators[random(0,allowedOperators.length - 1)];
+    do {
+        x = random(minX, maxX);
+        y = random(minY, maxY);
+    } while ((opSymbol == '÷') && (y > 10) && (((x/y) % 1) != 0));
     
     // display equation
     equation = x + ' ' + opSymbol + ' ' + y;
@@ -112,6 +153,7 @@ function checkTries() {
             msg.style.color = 'red';
         } else {
             resetEquation();
+            countScore(false);
         }
     }
 }
@@ -123,6 +165,50 @@ function resetEquation() {
     getEquation();
     input.focus();
 }
+
+function countScore(correct) {
+    count += 1;
+    score += correct ? 1 : 0;
+    scoreDisplay.innerHTML = score + ' / ' + count;
+}
+
+function timer() {
+    if ((time > 0) && (document.querySelector('#settings-window').style.display == 'none')) {
+        time -= 1;
+        console.log(time);
+
+        let second = time % 60;
+        let minute = (time - second) / 60;
+        let between = (second < 10) ? ':0' : ':';
+        timerDisplay.innerHTML = minute + between + second;
+    }
+}
+
+function setTimerOption() {
+    let minuteOption = document.querySelector('#minute');
+    let secondOption = document.querySelector('#second');
+    let option;
+    for (let i = 0; i < 2; i++) {
+        option = document.createElement('option');
+        option.value = i;
+        option.innerHTML = i;
+        minuteOption.appendChild(option);
+    }
+    for (let i = 1; i < 60; i++) {
+        option = document.createElement('option');
+        option.value = i;
+        option.innerHTML = i;
+        secondOption.appendChild(option);
+        if (i==30) {
+            option.selected = true;
+        }
+    }
+}
+
+document.querySelector('#timer-on').addEventListener('click', () => {
+    document.querySelector('#minute').disabled = !document.querySelector('#timer-on').checked;
+    document.querySelector('#second').disabled = !document.querySelector('#timer-on').checked;
+})
 
 // change background color
 function changeColor(color) {
@@ -146,6 +232,7 @@ btnSubmit.addEventListener('click', () => {
             changeColor('#00cc00');
             setTimeout(() => {changeColor(bgColor)}, 400);
             resetEquation();
+            countScore(true);
         } else {
             // give tries for wrong answers
             changeColor('red');
@@ -162,6 +249,7 @@ btnSkip.addEventListener('click', () => {
     changeColor('yellow');
     setTimeout(() => {changeColor(bgColor)}, 400); 
     resetEquation();
+    countScore(false);
     input.focus();
 })
 
@@ -200,6 +288,8 @@ for (let i = 0; i <btnGo.length; i++) {
         getConfigurations();
         setTimeout(() => {changeColor(bgColor)}, 400);
         resetEquation();
+        count = 0;
+        score = 0;
         for (let j = 0; j < btnClose.length; j++) {
             btnClose[j].click();
         }
@@ -210,5 +300,7 @@ for (let i = 0; i <btnGo.length; i++) {
 document.querySelector('#direction').innerHTML = "Solve the following equation. If the answer is not an integer, round to the nearest " + round + 'th.';
 document.querySelector('body').style.backgroundColor = '#000042';
 // get first equation
+setTimerOption();
+setInterval(timer, 1000);
 getConfigurations();
 getEquation();

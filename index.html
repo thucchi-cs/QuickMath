@@ -14,11 +14,11 @@
         <span id="options">
             <span>
                 <img src="./imgs/settings-icon.png" alt="settings-icon" id="settings">
-                <h1 id="timer">00:30</h1>
+                <h1 id="timer"></h1>
             </span>
             <span>
                 <img src="./imgs/restart2.png" alt="restart" class="start" id="restart">        
-                <h1 id="score">56/62</h1>
+                <h1 id="score"></h1>
             </span>
         </span>
         <div id="head">
@@ -40,13 +40,21 @@
             <span id="settings-body">
                 <span id="settings-left">
                     <li>X</li>
+                        <input type="number" value="0" class="x-range">
                         <input type="number" value="10" class="x-range">
-                        <input type="number" value="20" class="x-range">
                     <li>Y</li>
-                        <input type="number" value="21" class="y-range">
-                        <input type="number" value="30" class="y-range">
+                        <input type="number" value="1" class="y-range">
+                        <input type="number" value="10" class="y-range">
                     <li>Z</li>
                     <input type="checkbox">
+                    <li>Addition (+)</li>
+                        <input type="checkbox" checked="true" id="operations">
+                    <li>Subtraction (-)</li>
+                        <input type="checkbox" checked="true" id="operations">
+                    <li>Multiplication (x)</li>
+                        <input type="checkbox" checked="true" id="operations">
+                    <li>Division (÷)</li>
+                        <input type="checkbox" checked="true" id="operations">
                 </span>
                 <span id="settings-right">
                     <li>Skip</li>
@@ -56,10 +64,15 @@
                             <option value="0">unlimited</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="3" selected>3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                    <li>Timer</li>
+                        <input type="checkbox" id="timer-on">
+                        <select disabled name="minute" id="minute"></select>
+                        :
+                        <select disabled name="second" id="second"></select>
                     <h1>heyy</h1>
                 </span>
             </span>
