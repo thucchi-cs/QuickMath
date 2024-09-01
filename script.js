@@ -17,6 +17,7 @@ const input = document.querySelector('#answer');
 const msg = document.querySelector('#result');
 const timerDisplay = document.querySelector('#timer');
 const scoreDisplay = document.querySelector('#score');
+const historyDisplay = document.querySelector('#history');
 const btnSubmit = document.querySelector('#submit');
 const btnSkip = document.querySelector('#skip');
 const btnSettings = document.querySelectorAll('.open-settings');
@@ -42,6 +43,7 @@ let opSymbol = operators[0];
 let equation = x + ' ' + opSymbol + ' ' + y;
 let score = 0;
 let count = 0;
+let history = [];
 
 // get values from settings
 function getConfigurations() {
@@ -110,6 +112,55 @@ function resetConfigurations() {
     document.querySelector('#second').value = setSecond;
 }
 
+class Problem {
+    constructor(pEquation) {
+        this.equation = pEquation;
+        this.answer = getAnswer();
+        this.tries = [];
+        this.color = null;
+    }
+
+    addTries(pAnswer) {
+        this.tries.push(pAnswer);
+        this.getColor();
+    }
+
+    getColor() {
+        if (this.tries[this.tries.length - 1] == 'skipped') {
+            this.color = 'orange';
+        } else if (this.tries[this.tries.length - 1] == this.answer) {
+            this.color = 'green';
+        } else {
+            this.color = 'red';
+        }
+    }
+}
+
+function updateHistory() {
+    let thisProblem = history[history.length - 1];
+    let newRow = document.createElement('tr');
+    let newEquation = document.createElement('td');
+    let newTries = document.createElement('td');
+    let newAnswer = document.createElement('td');
+
+    newRow.style.color = thisProblem.color;
+    newEquation.innerHTML = thisProblem.equation;
+    newTries.innerHTML = thisProblem.tries;
+    newAnswer.innerHTML = thisProblem.answer;
+    newRow.appendChild(newEquation);
+    newRow.appendChild(newTries);
+    newRow.appendChild(newAnswer);
+    console.log(historyDisplay.firstChild);
+    historyDisplay.insertBefore(newRow, historyDisplay.firstChild);
+}
+
+function resetHistory() {
+    history = [];
+    for (let i = 0; i < historyDisplay.childNodes.length; i++) {
+        historyDisplay.removeChild(historyDisplay.firstChild);
+    }
+}
+
 // random numbers function
 function random(min, max) {
     // pick number from min to max
@@ -123,12 +174,15 @@ function getEquation() {
     do {
         x = random(minX, maxX);
         y = random(minY, maxY);
-    } while ((opSymbol == '÷') && (y > 10) && (((x/y) % 1) != 0));
+    } while ((opSymbol == '÷') && (y == 0));
     
     // display equation
     equation = x + ' ' + opSymbol + ' ' + y;
     console.log(equation);
     equationDisplay.innerHTML = equation;
+
+    // add to history list
+    history.push(new Problem(equation));
 }
 
 // get correct answers of equation
@@ -168,6 +222,8 @@ function checkTries() {
 function resetEquation() {
     msg.innerHTML = '';
     tries = 0;
+    console.log(history);
+    updateHistory();
     getEquation();
     input.focus();
 }
@@ -196,6 +252,7 @@ function timer() {
 
         if(time == 0) {
             endWin.classList.remove('hidden');
+            document.querySelector('#score-display').innerHTML = scoreDisplay.innerHTML;
         }
     }
 }
@@ -244,6 +301,7 @@ btnSubmit.addEventListener('click', () => {
         setTimeout(() => {msg.style.color = 'red'}, 100);
     } else {
         // check right answer
+        history[history.length-1].addTries(Number(input.value));
         if (Number(input.value) == answer) {
             changeColor('#00cc00');
             setTimeout(() => {changeColor(bgColor)}, 400);
@@ -262,8 +320,9 @@ btnSubmit.addEventListener('click', () => {
 
 // skip question
 btnSkip.addEventListener('click', () => {
-    changeColor('yellow');
+    changeColor('orange');
     setTimeout(() => {changeColor(bgColor)}, 400); 
+    history[history.length-1].addTries('skipped');
     resetEquation();
     countScore(false);
     input.focus();
@@ -282,8 +341,7 @@ input.addEventListener('keydown', (key) => {
 for(let i = 0; i < btnSettings.length; i++) {
     btnSettings[i].addEventListener('click', () => {
         document.querySelector('#settings-window').classList.remove('hidden');
-        // endWin.classList.add('hidden');
-        // resultsWin.classList.add('hidden');
+        document.querySelector('#settings-window').querySelector('img').classList.remove('hidden');
     })
 }
 
@@ -306,12 +364,15 @@ for (let i = 0; i <btnGo.length; i++) {
         changeColor('white');
         getConfigurations();
         setTimeout(() => {changeColor(bgColor)}, 400);
-        resetEquation();
+        resetHistory();
+        getEquation();
         count = 0;
         score = 0;
+        scoreDisplay.innerHTML = score + ' / ' + count;
         for (let j = 0; j < btnClose.length; j++) {
             btnClose[j].click();
         }
+        input.focus();
     })
 }
 
@@ -330,4 +391,3 @@ document.querySelector('body').style.backgroundColor = '#000042';
 setTimerOption();
 getConfigurations();
 setInterval(timer, 1000);
-getEquation();

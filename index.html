@@ -36,13 +36,15 @@
         <div id="end-window" class="hidden">
             <img src="./imgs/close-icon.png" alt="end-window" class="close pointer hidden">
             <h1 class="title">Quick Math Prac</h1>
+            <h1>00:00</h1>
+            <h1 id="score-display"></h1>
             <button class="start pointer">restart</button>
             <button class="open-settings pointer">settings</button>
             <button class="open-results pointer">results</button>
         </div>
 
         <div id="settings-window">  
-            <img src="./imgs/close-icon.png" alt="settings-window" class="close pointer">
+            <img src="./imgs/close-icon.png" alt="settings-window" class="hidden close pointer">
             <h1 class="title">OPTIONS</h1>
             <span id="settings-body">
                 <span id="settings-left">
@@ -90,6 +92,14 @@
         <div id="results-window" class="hidden">
             <img src="./imgs/close-icon.png" alt="results-window" class="close pointer">
             <h1 class="title">Quick Math Prac</h1>
+            <table>
+                <tr>
+                    <td>Equation</td>
+                    <td>Your Answer</td>
+                    <td>Expected Answer</td>
+                </tr>
+                <tbody id="history"></tbody>
+            </table>
         </div>
 
 
