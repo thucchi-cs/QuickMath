@@ -13,12 +13,12 @@
     <body>
         <span id="options">
             <span>
-                <img src="./imgs/settings-icon.png" alt="settings-icon" id="settings">
+                <img src="./imgs/settings-icon.png" alt="settings-icon" id="settings" class="open-settings pointer">
                 <h1 id="timer"></h1>
             </span>
             <span>
-                <img src="./imgs/restart2.png" alt="restart" class="start" id="restart">        
-                <h1 id="score"></h1>
+                <img src="./imgs/restart2.png" alt="restart" class="start pointer" id="restart">        
+                <h1 id="score" class="open-results pointer">0/0</h1>
             </span>
         </span>
         <div id="head">
@@ -28,14 +28,21 @@
         <h1 id="equation"></h1>
         <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01">
         <div id="buttons">
-            <button id="submit">check</button>
-            <button id="skip">skip</button>
+            <button id="submit" class="pointer">check</button>
+            <button id="skip" class="pointer">skip</button>
         </div>
         <h1 id="result"></h1>
-
+        
+        <div id="end-window" class="hidden">
+            <img src="./imgs/close-icon.png" alt="end-window" class="close pointer hidden">
+            <h1 class="title">Quick Math Prac</h1>
+            <button class="start pointer">restart</button>
+            <button class="open-settings pointer">settings</button>
+            <button class="open-results pointer">results</button>
+        </div>
 
         <div id="settings-window">  
-            <img src="./imgs/close-icon.png" alt="settings-window" class="close">
+            <img src="./imgs/close-icon.png" alt="settings-window" class="close pointer">
             <h1 class="title">OPTIONS</h1>
             <span id="settings-body">
                 <span id="settings-left">
@@ -76,8 +83,15 @@
                     <h1>heyy</h1>
                 </span>
             </span>
-            <button class="start">Go</button>
+            <button class="start pointer">Go</button>
+            <p class="open-results pointer">see results</p>
         </div>
+
+        <div id="results-window" class="hidden">
+            <img src="./imgs/close-icon.png" alt="results-window" class="close pointer">
+            <h1 class="title">Quick Math Prac</h1>
+        </div>
+
 
         <script src="./script.js"></script>
     </body>

@@ -19,11 +19,15 @@ const timerDisplay = document.querySelector('#timer');
 const scoreDisplay = document.querySelector('#score');
 const btnSubmit = document.querySelector('#submit');
 const btnSkip = document.querySelector('#skip');
-const btnSettings = document.querySelector('#settings');
+const btnSettings = document.querySelectorAll('.open-settings');
 const settingsWin = document.querySelector('#settings-window');
+const resultsWin = document.querySelector('#results-window');
+const endWin = document.querySelector('#end-window');
+const windows = [settingsWin, resultsWin, endWin];
 const btnRestart = document.querySelector('#restart');
 const btnClose = document.querySelectorAll('.close');
 const btnGo = document.querySelectorAll('.start');
+const btnResults = document.querySelectorAll('.open-results');
 
 // constants
 const bgColor = '#000042';
@@ -100,6 +104,8 @@ function resetConfigurations() {
 
     // timer
     document.querySelector('#timer-on').checked = timerOn;
+    document.querySelector('#minute').disabled = !timerOn;
+    document.querySelector('#second').disabled = !timerOn;
     document.querySelector('#minute').value = setMinute;
     document.querySelector('#second').value = setSecond;
 }
@@ -173,14 +179,24 @@ function countScore(correct) {
 }
 
 function timer() {
-    if ((time > 0) && (document.querySelector('#settings-window').style.display == 'none')) {
+    let pause = false;
+    for (let i = 0; i < windows.length; i++) {
+        if (!windows[i].classList.contains('hidden')) {
+            pause = true;
+            break;
+        }
+    }
+    if ((time > 0) && (!pause)) {
         time -= 1;
-        console.log(time);
 
         let second = time % 60;
         let minute = (time - second) / 60;
         let between = (second < 10) ? ':0' : ':';
         timerDisplay.innerHTML = minute + between + second;
+
+        if(time == 0) {
+            endWin.classList.remove('hidden');
+        }
     }
 }
 
@@ -263,16 +279,19 @@ input.addEventListener('keydown', (key) => {
 })
 
 // open settings window
-btnSettings.addEventListener('click', () => {
-    document.querySelector('#settings-window').style.display = 'block';
-    document.querySelector('#settings-window').style.position = 'absolute';
-})
+for(let i = 0; i < btnSettings.length; i++) {
+    btnSettings[i].addEventListener('click', () => {
+        document.querySelector('#settings-window').classList.remove('hidden');
+        // endWin.classList.add('hidden');
+        // resultsWin.classList.add('hidden');
+    })
+}
 
 // close windows
 for (let i = 0; i < btnClose.length; i++) {
     btnClose[i].addEventListener('click', () => {
         let window = document.querySelector('#' + btnClose[i].alt);
-        window.style.display = 'none';
+        window.classList.add('hidden');
     })
 }
 
@@ -296,11 +315,19 @@ for (let i = 0; i <btnGo.length; i++) {
     })
 }
 
+
+// open results window
+for (let i = 0; i < btnResults.length; i++) {
+    btnResults[i].addEventListener('click', () => {
+        resultsWin.classList.remove('hidden');
+    })
+}
+
 // set direction
 document.querySelector('#direction').innerHTML = "Solve the following equation. If the answer is not an integer, round to the nearest " + round + 'th.';
 document.querySelector('body').style.backgroundColor = '#000042';
 // get first equation
 setTimerOption();
-setInterval(timer, 1000);
 getConfigurations();
+setInterval(timer, 1000);
 getEquation();

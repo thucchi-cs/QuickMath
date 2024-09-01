@@ -2,6 +2,10 @@
     font-family: "SUSE", sans-serif;
 }
 
+.pointer:hover {
+    cursor: pointer;
+}
+
 body {
     transition: 300ms;
     background-color: '#000042';
@@ -103,17 +107,20 @@ h1, h3 {
     font-size: 5vh;
 }
 
-#settings-window {
+#settings-window, #results-window, #end-window {
     background-color: #cccccc;
     width:80%;
     height:80%;
     position:absolute;
-    display:block;
     margin: auto;
     left:10%;
     top: 10%;
     transition: 500ms;
 }
+
+/* #end-window {
+    display:none;
+} */
 
 .close {
     width: 4%;
