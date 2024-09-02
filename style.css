@@ -318,7 +318,7 @@ td {
         display: inline-block;
         height: 70%;
         /* background-color: red; */
-        overflow: auto;
+        overflow-y: scroll;
     }
 
     .space {
@@ -393,7 +393,7 @@ td {
     }
 
     #end-window {
-        /* height: 90%; */
+        height: 90%;
         top: 5%;
     }
 
