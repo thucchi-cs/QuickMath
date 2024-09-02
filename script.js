@@ -45,12 +45,26 @@ let score = 0;
 let count = 0;
 let history = [];
 
+
+function resetAll() {
+    getConfigurations();
+    resetHistory();
+    getEquation();
+    count = 0;
+    score = 0;
+    tries = 0;
+    scoreDisplay.innerHTML = score + ' / ' + count;
+    msg.innerHTML = '';
+    input.value='';
+    input.focus();
+}
+
 // get values from settings
 function getConfigurations() {
     // number ranges
     minX = Number(document.querySelectorAll('.x-range')[0].value);
     maxX = Number(document.querySelectorAll('.x-range')[1].value);
-    minY = Number(document.querySelectorAll('.y-range')[0].value);
+    minY = Number(document.querySelectorAll('.y-range')[0].value);  
     maxY = Number(document.querySelectorAll('.y-range')[1].value);
 
     // skip toggle
@@ -121,17 +135,17 @@ class Problem {
     }
 
     addTries(pAnswer) {
-        this.tries.push(pAnswer);
+        this.tries.push(' ' + pAnswer);
         this.getColor();
     }
 
     getColor() {
-        if (this.tries[this.tries.length - 1] == 'skipped') {
+        if (this.tries[this.tries.length - 1] == ' skipped') {
             this.color = 'orange';
         } else if (this.tries[this.tries.length - 1] == this.answer) {
-            this.color = 'green';
+            this.color = '#00cc00';
         } else {
-            this.color = 'red';
+            this.color = '#ff3030';
         }
     }
 }
@@ -148,8 +162,8 @@ function updateHistory() {
     newTries.innerHTML = thisProblem.tries;
     newAnswer.innerHTML = thisProblem.answer;
     newRow.appendChild(newEquation);
-    newRow.appendChild(newTries);
     newRow.appendChild(newAnswer);
+    newRow.appendChild(newTries);
     console.log(historyDisplay.firstChild);
     historyDisplay.insertBefore(newRow, historyDisplay.firstChild);
 }
@@ -326,6 +340,7 @@ btnSkip.addEventListener('click', () => {
     setTimeout(() => {changeColor(bgColor)}, 400); 
     history[history.length-1].addTries('skipped');
     resetEquation();
+    input.value='';
     countScore(false);
     input.focus();
 })
@@ -344,6 +359,7 @@ for(let i = 0; i < btnSettings.length; i++) {
     btnSettings[i].addEventListener('click', () => {
         document.querySelector('#settings-window').classList.remove('hidden');
         document.querySelector('#settings-window').querySelector('img').classList.remove('hidden');
+        document.querySelector('#settings-results').classList.remove('hidden');
     })
 }
 
@@ -364,17 +380,11 @@ btnClose[0].addEventListener('click', () => {
 for (let i = 0; i <btnGo.length; i++) {
     btnGo[i].addEventListener('click', () => {
         changeColor('white');
-        getConfigurations();
         setTimeout(() => {changeColor(bgColor)}, 400);
-        resetHistory();
-        getEquation();
-        count = 0;
-        score = 0;
-        scoreDisplay.innerHTML = score + ' / ' + count;
+        resetAll();
         for (let j = 0; j < btnClose.length; j++) {
             btnClose[j].click();
         }
-        input.focus();
     })
 }
 
@@ -386,9 +396,8 @@ for (let i = 0; i < btnResults.length; i++) {
     })
 }
 
-// set direction
 document.querySelector('body').style.backgroundColor = '#000042';
 // get first equation
 setTimerOption();
-getConfigurations();
+resetAll();
 setInterval(timer, 1000);

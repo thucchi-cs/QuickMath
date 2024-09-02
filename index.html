@@ -26,7 +26,7 @@
             <h3 class="medium-font">Solve the following equation. If the answer is not an integer, round to the nearest 100th (0.00)</h3>
         </div>
         <h1 id="equation"></h1>
-        <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01" class="round-corners">
+        <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01" class="round-corners center-text">
         <div id="buttons">
             <button id="submit" class="pointer medium-font round-corners">check</button>
             <button id="skip" class="pointer medium-font round-corners">skip</button>
@@ -35,30 +35,32 @@
         
         <div id="end-window" class="hidden window round-corners">
             <img src="./imgs/close-icon.png" alt="end-window" class="close pointer hidden">
-            <h1 class="title">Quick Math Prac</h1>
-            <h1>00:00</h1>
+            <h1 class="settings-title">Time's Up!</h1>
+            <h1 id="end-time">00:00</h1>
             <h1 id="score-display"></h1>
-            <button class="start pointer">restart</button>
-            <button class="open-settings pointer">settings</button>
-            <button class="open-results pointer">results</button>
+            <div class="space2"></div>
+            <button class="open-settings pointer settings-buttons round-corners small-font">Settings</button>
+            <button class="start pointer settings-buttons round-corners small-font">Restart</button>
+            <button class="open-results pointer settings-buttons round-corners small-font">History</button>
+            <!-- <div class="space2"></div> -->
         </div>
 
         <div id="settings-window" class="window round-corners">  
             <img src="./imgs/close-icon.png" alt="settings-window" class="hidden close pointer">
-            <h1 id="settings-title">OPTIONS</h1>
+            <h1 class="settings-title">OPTIONS</h1>
             <span id="settings-body" class="small-font inline spread">
                 <span id="settings-left">
                 <h3>Number Ranges:</h3>
                 <div>
                     <li class="space-around inline">X:</li>
-                        <input type="number" value="0" class="x-range space-around round-corners small-font inline">
+                        <input type="number" value="0" class="x-range space-around round-corners small-font inline center-text">
                         <p class="space-around inline">to</p> 
-                        <input type="number" value="10" class="x-range space-around round-corners small-font inline">
+                        <input type="number" value="10" class="x-range space-around round-corners small-font inline center-text">
                     <div class="space"></div>
                     <li class="space-around inline">Y:</li>
-                        <input type="number" value="1" class="y-range space-around round-corners small-font inline">
+                        <input type="number" value="1" class="y-range space-around round-corners small-font inline center-text">
                         <p class="space-around inline">to</p> 
-                        <input type="number" value="10" class="y-range space-around round-corners small-font inline">
+                        <input type="number" value="10" class="y-range space-around round-corners small-font inline center-text">
                 </div>
                 <div class="space"></div>
                 <div class="space"></div>
@@ -66,7 +68,7 @@
                     <input type="checkbox" id="skip-toggle" checked="true" class="space-around check">
                     <div></div>
                 <h3 class="inline space-around">Tries:</h3>
-                    <select name="tries" id="tries-select" class="space-around">
+                    <select name="tries" id="tries-select" class="space-around center-text round-corners">
                         <option value="0">unlimited</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -77,9 +79,9 @@
                     <div></div>
                 <h3 class="inline space-around">Timer:</h3>
                     <input type="checkbox" id="timer-on" class="space-around check">
-                    <select disabled name="minute" id="minute" class="space-around"></select>
+                    <select disabled name="minute" id="minute" class="space-around center-text round-corners"></select>
                     :
-                    <select disabled name="second" id="second" class="space-around"></select>
+                    <select disabled name="second" id="second" class="space-around center-text round-corners"></select>
             </span>
             <span id="settings-right">
                 <h3>Operators:</h3>
@@ -95,23 +97,25 @@
                     <li class="inline">Division (÷)</li>
                         <input type="checkbox" checked="true" id="operations" class="check">
                         <div class="space2"></div>
-                    <button class="start pointer round-corners small-font" id="settings-go">Go</button>
-                    <button class="open-results pointer round-corners small-font" id="settings-results">see history</button>
+                    <button class="start pointer round-corners small-font settings-buttons" id="settings-go">Go</button>
+                    <button class="open-results pointer round-corners small-font hidden settings-buttons" id="settings-results">See History</button>
                 </span>
             </span>
         </div>
 
-        <div id="results-window" class="hidden window round-corners">
+        <div id="results-window" class="window round-corners hidden">
             <img src="./imgs/close-icon.png" alt="results-window" class="close pointer">
-            <h1 class="title">Quick Math Prac</h1>
-            <table>
-                <tr>
-                    <td>Equation</td>
-                    <td>Your Answer</td>
-                    <td>Expected Answer</td>
-                </tr>
-                <tbody id="history"></tbody>
-            </table>
+            <h1 class="settings-title">Practice History</h1>
+            <div id="history-container">
+                <table id="history-table">
+                    <tr>
+                        <td id="col1">Equation</td>
+                        <td id="col2">Expected Answer</td>
+                        <td id="col3">Your Answers</td>
+                    </tr>
+                    <tbody id="history"></tbody>
+                </table>
+            </div>
         </div>
 
 
