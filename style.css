@@ -268,6 +268,14 @@ td {
         font-size: 2.3vh;
     }
 
+    .small-font {
+        font-size: 2vh;
+    }
+
+    body {
+        margin-top: 20vh;
+    }
+
     #equation {
         font-size: 5vh;
     }
@@ -284,10 +292,126 @@ td {
     }
 
     #submit, #skip {
-        width: 15vw;
+        width: 20vw;
+    }
+
+    #options {
+        top: 30vh;
+        position: relative;
+        margin: auto;
+    }
+
+    #options img {
+        height: 5vh;
+    }
+    #settings:hover, #restart:hover {
+        height:5vh;
+    }
+
+    .window {
+        width: 80%;
+        left: 10%;
+    }
+
+    #settings-body {
+        margin: 0;
+        display: inline-block;
+        height: 70%;
+        /* background-color: red; */
+        overflow: auto;
+    }
+
+    .space {
+        height: 2vh;
+        /* background-color: red; */
+    }
+
+    #settings-left select {
+        font-size: 2vh;
+        /* width: 20%; */
+    }
+
+    #settings-right {
+        margin-top: 5vh;
+        /* text-align: right;
+        margin-left: 15vw; */
+    }
+
+    #settings-buttons {
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    #settings-go, #settings-results {
+        margin: 0;
+        margin-top: 7vh;
+        /* width:max-content; */
+        /* display: inline-flex; */
+        /* margin-left: 2vw; */
+        /* float: right; */
+        /* left: 200vw; */
+    }
+
+    #settings-go {
+        width: 20vw;
     }
     
-    #skip {
-        margin-left: 15px;
+    #settings-results {
+        width: 30vw;
+        font-size: 2vh;
+        margin-left: 2vw;
+        /* margin-top: 1vh; */
+    }
+
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .close {
+        width: 20px;
+        margin-left: 37%;
+        margin-top: 5%;
+    }
+
+    .settings-title {
+        font-size: 5vh;
+        width: 95%;;
+    }
+
+    #history-container {
+        width: 90%;
+        height: 80%
+    }
+
+    td {
+        border-width: 3px;
+        font-size: 1.5vh;
+    }
+
+    #col1, #col2, #col3 {
+        font-size: 2vh;
+    }
+
+    #end-window {
+        /* height: 90%; */
+        top: 5%;
+    }
+
+    #end-window .settings-title {
+        font-size: 7vh;
+        margin-top: 10vh;
+    }
+
+    #end-time, #score-display {
+        font-size: 6vh;
+    }
+
+    #end-window .settings-buttons {
+        display: block;
+        margin: auto;
+        width: 40vw;
+        font-size: 3vh;
+        height: 14vw;
+        margin-top: 2vh;
     }
 }

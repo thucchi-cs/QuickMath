@@ -39,10 +39,9 @@
             <h1 id="end-time">00:00</h1>
             <h1 id="score-display"></h1>
             <div class="space2"></div>
-            <button class="open-settings pointer settings-buttons round-corners small-font">Settings</button>
+            <button id='end-settings' class="open-settings pointer settings-buttons round-corners small-font">Settings</button>
             <button class="start pointer settings-buttons round-corners small-font">Restart</button>
             <button class="open-results pointer settings-buttons round-corners small-font">History</button>
-            <!-- <div class="space2"></div> -->
         </div>
 
         <div id="settings-window" class="window round-corners">  
@@ -97,8 +96,11 @@
                     <li class="inline">Division (÷)</li>
                         <input type="checkbox" checked="true" id="operations" class="check">
                         <div class="space2"></div>
-                    <button class="start pointer round-corners small-font settings-buttons" id="settings-go">Go</button>
-                    <button class="open-results pointer round-corners small-font hidden settings-buttons" id="settings-results">See History</button>
+                    <div id="settings-buttons">
+
+                        <button class="start pointer round-corners small-font settings-buttons" id="settings-go">Go</button>
+                        <button class="open-results pointer round-corners small-font hidden settings-buttons" id="settings-results">See History</button>
+                    </div>
                 </span>
             </span>
         </div>

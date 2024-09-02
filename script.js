@@ -170,9 +170,10 @@ function updateHistory() {
 
 function resetHistory() {
     history = [];
-    for (let i = 0; i < historyDisplay.childNodes.length; i++) {
-        historyDisplay.removeChild(historyDisplay.firstChild);
+    while(historyDisplay.firstChild) {
+        historyDisplay.removeChild(historyDisplay.lastChild);
     }
+    console.log('hello')
 }
 
 // random numbers function
@@ -269,6 +270,7 @@ function timer() {
         if(time == 0) {
             endWin.classList.remove('hidden');
             document.querySelector('#score-display').innerHTML = scoreDisplay.innerHTML;
+            input.blur();
         }
     }
 }
@@ -277,13 +279,13 @@ function setTimerOption() {
     let minuteOption = document.querySelector('#minute');
     let secondOption = document.querySelector('#second');
     let option;
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 10; i++) {
         option = document.createElement('option');
         option.value = i;
         option.innerHTML = i;
         minuteOption.appendChild(option);
     }
-    for (let i = 1; i < 60; i++) {
+    for (let i = 0; i < 60; i++) {
         option = document.createElement('option');
         option.value = i;
         option.innerHTML = i;
@@ -368,6 +370,7 @@ for (let i = 0; i < btnClose.length; i++) {
     btnClose[i].addEventListener('click', () => {
         let window = document.querySelector('#' + btnClose[i].alt);
         window.classList.add('hidden');
+        input.focus();
     })
 }
 
