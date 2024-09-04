@@ -26,7 +26,7 @@
             <h3 class="medium-font">Solve the following equation. If the answer is not an integer, round to the nearest 100th (0.00)</h3>
         </div>
         <h1 id="equation"></h1>
-        <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01" class="round-corners center-text">
+        <input autofocus autocomplete="off" placeholer="Answer" id="answer" type="number" step="0.01" class="round-corners center-text" value=-0.01>
         <div id="buttons">
             <button id="submit" class="pointer medium-font round-corners">check</button>
             <button id="skip" class="pointer medium-font round-corners">skip</button>
@@ -77,10 +77,10 @@
                     </select>
                     <div></div>
                 <h3 class="inline space-around">Timer:</h3>
-                    <input type="checkbox" id="timer-on" class="space-around check">
-                    <select disabled name="minute" id="minute" class="space-around center-text round-corners"></select>
+                    <input type="checkbox" id="timer-on" class="space-around check" checked>
+                    <select name="minute" id="minute" class="space-around center-text round-corners"></select>
                     :
-                    <select disabled name="second" id="second" class="space-around center-text round-corners"></select>
+                    <select name="second" id="second" class="space-around center-text round-corners"></select>
             </span>
             <span id="settings-right">
                 <h3>Operators:</h3>

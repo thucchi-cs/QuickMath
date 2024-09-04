@@ -140,7 +140,7 @@ class Problem {
     }
 
     getColor() {
-        if (this.tries[this.tries.length - 1] == ' skipped') {
+        if ((this.tries[this.tries.length - 1] == ' skipped') || (this.tries[this.tries.length - 1] == ' timed out')) {
             this.color = 'orange';
         } else if (this.tries[this.tries.length - 1] == this.answer) {
             this.color = '#00cc00';
@@ -268,6 +268,8 @@ function timer() {
         timerDisplay.innerHTML = minute + between + second;
 
         if(time == 0) {
+            history[history.length-1].addTries('timed out');
+            updateHistory();
             endWin.classList.remove('hidden');
             document.querySelector('#score-display').innerHTML = scoreDisplay.innerHTML;
             input.blur();
@@ -370,7 +372,16 @@ for (let i = 0; i < btnClose.length; i++) {
     btnClose[i].addEventListener('click', () => {
         let window = document.querySelector('#' + btnClose[i].alt);
         window.classList.add('hidden');
-        input.focus();
+        let pause = false;
+        for (let i = 0; i < windows.length; i++) {
+            if (!windows[i].classList.contains('hidden')) {
+                pause = true;
+                break;
+            }
+        }
+        if (!pause) {
+            input.focus();
+        }
     })
 }
 
