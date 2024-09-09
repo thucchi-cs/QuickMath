@@ -147,6 +147,10 @@ body {
     display: inline-block;
 }
 
+#settings-right .inline {
+    font-size: 3.4vh;
+}
+
 #settings-right {
     width:80%;
 }
@@ -186,7 +190,7 @@ body {
 
 #settings-results {
     margin-top: 10px;
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
 
 #results-window {

@@ -45,7 +45,7 @@ let score = 0;
 let count = 0;
 let history = [];
 
-
+// reset all when restart
 function resetAll() {
     getConfigurations();
     resetHistory();
@@ -93,6 +93,10 @@ function getConfigurations() {
         setMinute = document.querySelector('#minute').value
         setSecond = document.querySelector('#second').value;
         time = (Number(setMinute) * 60) + Number(setSecond) + 1;
+        let second = Number(setSecond);
+        let minute = Number(setMinute);
+        let between = (second < 10) ? ':0' : ':';
+        document.querySelector('#end-time').innerHTML = minute + between + second;;
     } else {
         time = 0;
         timerDisplay.innerHTML = '';
@@ -126,7 +130,9 @@ function resetConfigurations() {
     document.querySelector('#second').value = setSecond;
 }
 
+// problems to be saved in history
 class Problem {
+    // constructor
     constructor(pEquation) {
         this.equation = pEquation;
         this.answer = getAnswer();
@@ -134,11 +140,13 @@ class Problem {
         this.color = null;
     }
 
+    // add an answer to the try column
     addTries(pAnswer) {
         this.tries.push(' ' + pAnswer);
         this.getColor();
     }
 
+    // get color based on correctness of answer
     getColor() {
         if ((this.tries[this.tries.length - 1] == ' skipped') || (this.tries[this.tries.length - 1] == ' timed out')) {
             this.color = 'orange';
@@ -150,6 +158,7 @@ class Problem {
     }
 }
 
+// add a question to the history tab
 function updateHistory() {
     let thisProblem = history[history.length - 1];
     let newRow = document.createElement('tr');
@@ -168,6 +177,7 @@ function updateHistory() {
     historyDisplay.insertBefore(newRow, historyDisplay.firstChild);
 }
 
+// delete all history when restart
 function resetHistory() {
     history = [];
     while(historyDisplay.firstChild) {
@@ -245,28 +255,35 @@ function resetEquation() {
     input.focus();
 }
 
+// increment score every answer
 function countScore(correct) {
     count += 1;
     score += correct ? 1 : 0;
     scoreDisplay.innerHTML = score + ' / ' + count;
 }
 
+// handle timer every second
 function timer() {
     let pause = false;
+    // check if timer should be paused - pause when a window is opened
     for (let i = 0; i < windows.length; i++) {
         if (!windows[i].classList.contains('hidden')) {
             pause = true;
             break;
         }
     }
+    
+    // increment timer when not paused
     if ((time > 0) && (!pause)) {
         time -= 1;
 
+        // timer display
         let second = time % 60;
         let minute = (time - second) / 60;
         let between = (second < 10) ? ':0' : ':';
         timerDisplay.innerHTML = minute + between + second;
 
+        // end session when time runs out
         if(time == 0) {
             history[history.length-1].addTries('timed out');
             updateHistory();
@@ -277,6 +294,7 @@ function timer() {
     }
 }
 
+// set up timer option in settings
 function setTimerOption() {
     let minuteOption = document.querySelector('#minute');
     let secondOption = document.querySelector('#second');
@@ -298,6 +316,7 @@ function setTimerOption() {
     }
 }
 
+// enable/disable timer option
 document.querySelector('#timer-on').addEventListener('click', () => {
     document.querySelector('#minute').disabled = !document.querySelector('#timer-on').checked;
     document.querySelector('#second').disabled = !document.querySelector('#timer-on').checked;
@@ -410,8 +429,8 @@ for (let i = 0; i < btnResults.length; i++) {
     })
 }
 
+// start
 document.querySelector('body').style.backgroundColor = '#000042';
-// get first equation
 setTimerOption();
 resetAll();
 setInterval(timer, 1000);
