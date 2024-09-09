@@ -276,6 +276,10 @@ td {
         font-size: 2vh;
     }
 
+    #settings-right .inline {
+        font-size: 2vh;
+    }    
+
     body {
         margin-top: 20vh;
     }

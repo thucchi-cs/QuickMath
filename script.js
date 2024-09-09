@@ -10,6 +10,7 @@ let time = 10;
 let timerOn = false;
 let setMinute = 0;
 let setSecond = 30;
+let wholeNumbers = true;
 
 // elements
 const equationDisplay = document.querySelector('#equation');
@@ -86,7 +87,10 @@ function getConfigurations() {
         }
     }
     console.log(allowedOperators);
-    
+
+    // whole numbers only
+    wholeNumbers = document.querySelector('#whole-numbers').checked;
+
     // timer
     timerOn = document.querySelector('#timer-on').checked
     if (timerOn) {
@@ -96,7 +100,7 @@ function getConfigurations() {
         let second = Number(setSecond);
         let minute = Number(setMinute);
         let between = (second < 10) ? ':0' : ':';
-        document.querySelector('#end-time').innerHTML = minute + between + second;;
+        document.querySelector('#end-time').innerHTML = '0' + minute + between + second;;
     } else {
         time = 0;
         timerDisplay.innerHTML = '';
@@ -199,8 +203,8 @@ function getEquation() {
     do {
         x = random(minX, maxX);
         y = random(minY, maxY);
-    } while ((opSymbol == '÷') && (y == 0));
-    
+    } while ( (opSymbol == '÷') && ( (y==0) || ( ((wholeNumbers) && (((x/y) % 1) != 0)) ) ));
+
     // display equation
     let xDisplay = (x < 0) ? ('(' + x + ')') : (x);
     let yDisplay = (y < 0) ? ('(' + y + ')') : (y);
@@ -281,7 +285,7 @@ function timer() {
         let second = time % 60;
         let minute = (time - second) / 60;
         let between = (second < 10) ? ':0' : ':';
-        timerDisplay.innerHTML = minute + between + second;
+        timerDisplay.innerHTML = '0' + minute + between + second;
 
         // end session when time runs out
         if(time == 0) {
