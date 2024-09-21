@@ -48,60 +48,59 @@
             <h1 class="settings-title">OPTIONS</h1>
             <span id="settings-body" class="small-font inline spread">
                 <span id="settings-left">
-                <h3>Number Ranges:</h3>
-                <div>
-                    <li class="space-around inline">X:</li>
-                        <input type="number" value="0" class="x-range space-around round-corners small-font inline center-text">
-                        <p class="space-around inline">to</p> 
-                        <input type="number" value="10" class="x-range space-around round-corners small-font inline center-text">
-                    <div class="space"></div>
-                    <li class="space-around inline">Y:</li>
-                        <input type="number" value="1" class="y-range space-around round-corners small-font inline center-text">
-                        <p class="space-around inline">to</p> 
-                        <input type="number" value="10" class="y-range space-around round-corners small-font inline center-text">
-                </div>
-                <div class="space"></div>
-                <h3 class="inline space-around">Skip</h3>
-                    <input type="checkbox" id="skip-toggle" checked="true" class="space-around check">
-                    <div></div>
-                <h3 class="inline space-around">Tries:</h3>
-                    <select name="tries" id="tries-select" class="space-around center-text round-corners">
-                        <option value="0">unlimited</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3" selected>3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <div></div>
-                <h3 class="inline space-around">Timer:</h3>
-                    <input type="checkbox" id="timer-on" class="space-around check" checked>
-                    <select name="minute" id="minute" class="space-around center-text round-corners"></select>
-                    :
-                    <select name="second" id="second" class="space-around center-text round-corners"></select>
-                <li class="inline">Whole Numbers Only</li>
-                    <input type="checkbox" checked="true" id="whole-numbers" class="check">
-                    <div class="space2"></div>
-            </span>
-            <span id="settings-right">
-                <h3>Operators:</h3>
-                    <li class="inline">Addition (+)</li>
-                        <input type="checkbox" checked="true" id="operations" class="check">
-                        <div class="space2"></div>
-                    <li class="inline">Subtraction (-)</li>
-                        <input type="checkbox" checked="true" id="operations" class="check">
-                        <div class="space2"></div>
-                    <li class="inline">Multiplication (x)</li>
-                        <input type="checkbox" checked="true" id="operations" class="check">
-                        <div class="space2"></div>
-                    <li class="inline">Division (÷)</li>
-                        <input type="checkbox" checked="true" id="operations" class="check">
-                        <div class="space2"></div>
-                    <div id="settings-buttons">
-
-                        <button class="start pointer round-corners small-font settings-buttons" id="settings-go">Go</button>
-                        <button class="open-results pointer round-corners small-font hidden settings-buttons" id="settings-results">See History</button>
+                    <h3>Number Ranges:</h3>
+                    <div id="number-ranges">
+                        <li class="space-around inline">1st Number:</li>
+                            <input type="number" value="0" class="x-range space-around round-corners small-font inline center-text">
+                            <p class="space-around inline">to</p> 
+                            <input type="number" value="10" class="x-range space-around round-corners small-font inline center-text">
+                        <div class="space"></div>
+                        <li class="space-around inline">2nd Number:</li>
+                            <input type="number" value="1" class="y-range space-around round-corners small-font inline center-text">
+                            <p class="space-around inline">to</p> 
+                            <input type="number" value="10" class="y-range space-around round-corners small-font inline center-text">
                     </div>
+                    <div class="space"></div>
+                    <h3 class="inline space-around">Skip</h3>
+                        <input type="checkbox" id="skip-toggle" checked="true" class="space-around check">
+                        <div></div>
+                    <h3 class="inline space-around">Tries:</h3>
+                        <select name="tries" id="tries-select" class="space-around center-text round-corners">
+                            <option value="0">unlimited</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    <h3 class="inline space-around">Timer:</h3>
+                        <input type="checkbox" id="timer-on" class="space-around check" checked>
+                        <select name="minute" id="minute" class="space-around center-text round-corners"></select>
+                        :
+                        <select name="second" id="second" class="space-around center-text round-corners"></select>
+                    <li class="inline">Whole Numbers Only</li>
+                        <input type="checkbox" checked="true" id="whole-numbers" class="check">
+                        <div class="space2"></div>
+                </span>
+                <span id="settings-right">
+                    <h3>Operators:</h3>
+                        <li class="inline">Addition (+)</li>
+                            <input type="checkbox" checked="true" id="operations" class="check">
+                            <div class="space2"></div>
+                        <li class="inline">Subtraction (-)</li>
+                            <input type="checkbox" checked="true" id="operations" class="check">
+                            <div class="space2"></div>
+                        <li class="inline">Multiplication (x)</li>
+                            <input type="checkbox" checked="true" id="operations" class="check">
+                            <div class="space2"></div>
+                        <li class="inline">Division (÷)</li>
+                            <input type="checkbox" checked="true" id="operations" class="check">
+                            <div class="space2"></div>
+                        <div id="settings-buttons">
+
+                            <button class="start pointer round-corners small-font settings-buttons" id="settings-go">Go</button>
+                            <button class="open-results pointer round-corners small-font hidden settings-buttons" id="settings-results">See History</button>
+                        </div>
                 </span>
             </span>
         </div>

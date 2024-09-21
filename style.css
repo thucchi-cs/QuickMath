@@ -137,7 +137,7 @@ body {
 }
 
 #settings-body {
-    width: 70%;
+    width: 80%;
     list-style: none;
     text-align: left;
     margin-top: 3%;
@@ -168,7 +168,7 @@ body {
 }
 
 #settings-left .x-range, #settings-left .y-range {
-    width: 20%;
+    width: 15%;
 }
 
 #settings-left select {
@@ -240,8 +240,6 @@ td {
 #end-window .settings-title {
     font-size: 12vh;
     margin-bottom: 20px;
-    /* margin-top: 10vh; */
-    /* color: red; */
 }
 
 #end-time, #score-display {
@@ -325,24 +323,23 @@ td {
         margin: 0;
         display: inline-block;
         height: 70%;
-        /* background-color: red; */
         overflow-y: scroll;
     }
 
     .space {
         height: 2vh;
-        /* background-color: red; */
     }
 
     #settings-left select {
         font-size: 2vh;
-        /* width: 20%; */
+    }
+
+    #number-ranges li {
+        display: block;
     }
 
     #settings-right {
         margin-top: 5vh;
-        /* text-align: right;
-        margin-left: 15vw; */
     }
 
     #settings-buttons {
@@ -353,11 +350,6 @@ td {
     #settings-go, #settings-results {
         margin: 0;
         margin-top: 7vh;
-        /* width:max-content; */
-        /* display: inline-flex; */
-        /* margin-left: 2vw; */
-        /* float: right; */
-        /* left: 200vw; */
     }
 
     #settings-go {
@@ -368,7 +360,6 @@ td {
         width: 30vw;
         font-size: 2vh;
         margin-left: 2vw;
-        /* margin-top: 1vh; */
     }
 
     ::-webkit-scrollbar {
