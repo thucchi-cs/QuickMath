@@ -393,7 +393,7 @@ for(let i = 0; i < btnSettings.length; i++) {
 // close windows
 for (let i = 0; i < btnClose.length; i++) {
     btnClose[i].addEventListener('click', () => {
-        let window = document.querySelector('#' + btnClose[i].alt);
+        let window = document.querySelector('#' + btnClose[i].id);
         window.classList.add('hidden');
         let pause = false;
         for (let i = 0; i < windows.length; i++) {
