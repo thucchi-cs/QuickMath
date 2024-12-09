@@ -23,11 +23,11 @@
     width:60%;
     height:90%;
     position:absolute;
-    margin: auto;
+    /* margin: auto; */
     float:center;
     left:20%;
     top: 5%;
-    transition: 500ms;
+    transition: 900ms;
 }
 
 .round-corners {
@@ -57,7 +57,9 @@
 }
 
 .hidden {
-    display: none;
+    /* top: 100%; */
+    margin-top: 100%;
+    /* display: none; */
 }
 
 body {

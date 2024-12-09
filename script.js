@@ -86,7 +86,6 @@ function getConfigurations() {
             allowedOperators.push(operators[i]);
         }
     }
-    console.log(allowedOperators);
 
     // whole numbers only
     wholeNumbers = document.querySelector('#whole-numbers').checked;
@@ -177,7 +176,6 @@ function updateHistory() {
     newRow.appendChild(newEquation);
     newRow.appendChild(newAnswer);
     newRow.appendChild(newTries);
-    console.log(historyDisplay.firstChild);
     historyDisplay.insertBefore(newRow, historyDisplay.firstChild);
 }
 
@@ -187,7 +185,6 @@ function resetHistory() {
     while(historyDisplay.firstChild) {
         historyDisplay.removeChild(historyDisplay.lastChild);
     }
-    console.log('hello')
 }
 
 // random numbers function
@@ -209,7 +206,6 @@ function getEquation() {
     let xDisplay = (x < 0) ? ('(' + x + ')') : (x);
     let yDisplay = (y < 0) ? ('(' + y + ')') : (y);
     equation = xDisplay + ' ' + opSymbol + ' ' + yDisplay;
-    console.log(equation);
     equationDisplay.innerHTML = equation;
 
     // add to history list
@@ -253,7 +249,6 @@ function checkTries() {
 function resetEquation() {
     msg.innerHTML = '';
     tries = 0;
-    console.log(history);
     updateHistory();
     getEquation();
     input.focus();
@@ -335,12 +330,10 @@ function changeColor(color) {
 btnSubmit.addEventListener('click', () => {
     // get right answer
     let answer = getAnswer();
-    console.log(answer);
     // check if input is numeric
     if (isNaN(Number(input.value))) {
         msg.innerHTML = 'Numbers only!';
         msg.style.color = bgColor;
-        console.log(bgColor);
         setTimeout(() => {msg.style.color = 'red'}, 100);
     } else {
         // check right answer
