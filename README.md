@@ -3,6 +3,8 @@ This is a website to practice quick mental math. It is available through the web
 
 [Link to website](https://thucchi-cs.github.io/QuickMath/)
 
+[Video Demo](https://youtu.be/lLWkyG_WBEI?si=-LoPvHMuoPFfoUxE)
+
 ## How it works
 
 ### Game:
@@ -41,5 +43,12 @@ I am a high schooler who loves math. However, like a lot of my classmates, I str
 ### How you can use it
 This website was made for anyone to use. Feel free to use it in classrooms, math clubs/organizations, or personal use. I am open to improvements and feedback. Please reach out using the email in my profile if you want to provide any.
 
-## Creating Process
+## Code Layout
 This website is entirely front-end. It was made using JavaScript, HTML, and CSS. It was mainly created from August 28th, 2024 to September 3rd, 2024. More improvements came later. 
+There are three files that make up the website: index.html, script.js, and style.css.
+### index.html
+This file contains the layout of the website. It creates each element you see on the screen. Buttons, texts, inputs, windows.
+### script.js
+This file handles the logic of how the game works. It controls every button click and input when you play the game. It generates equations based on the settings, checks your answers, flash colors, and calculate scores. The file also controls the timer as well as when and how each window pops up. To put it simply, this file controls any physical changes on the website. 
+### style.css
+This file is the design of the website. Styling the colors, sizes, fonts, and mobile adaptations.
