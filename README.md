@@ -3,7 +3,7 @@ This is a website to practice quick mental math. It is available through the web
 
 [Link to website](https://thucchi-cs.github.io/QuickMath/)
 
-[Video Demo](https://www.youtube.com/watch?v=AKD_Utw2-Qc)
+[Video Demo](https://youtu.be/lLWkyG_WBEI?si=-LoPvHMuoPFfoUxE)
 
 ## How it works
 
